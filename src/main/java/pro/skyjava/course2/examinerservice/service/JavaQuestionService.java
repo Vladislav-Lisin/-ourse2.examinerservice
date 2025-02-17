@@ -1,4 +1,58 @@
 package pro.skyjava.course2.examinerservice.service;
 
-public class JavaQuestionService {
+import org.springframework.stereotype.Service;
+import pro.skyjava.course2.examinerservice.domain.Question;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
+
+@Service
+public class JavaQuestionService implements QuestionService {
+    Set<Question> questions = new HashSet<>();
+
+    @Override
+    public Question add(String question, String answer) {
+        Question javaQuestion = new Question(question, answer);
+        questions.add(javaQuestion);
+        return javaQuestion;
+    }
+
+    @Override
+    public String remove(String question, String answer) {
+        if (questions.remove(new Question(question, answer))) {
+            return "Пользователь успешно удалён";
+        }
+        return null;
+    }
+
+    public Collection<Question> getAllQuestionsAndAnswers() {
+        return questions;
+    }
+
+    @Override
+    public Question getRandomQuestion() {
+        if (questions.isEmpty()) {
+            return null;
+        }
+        int size = questions.size();
+        int item = new Random().nextInt(size);
+        int i = 0;
+        for (Question obj : questions) {
+            if (i == item) {
+                return obj;
+            }
+            i++;
+        }
+        return null;
+    }
 }
+
+
+
+
+
+
+
