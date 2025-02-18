@@ -34,18 +34,18 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
-        int size = questions.size();
-        int item = new Random().nextInt(size);
+        if (questions.isEmpty()) {
+            throw new IllegalStateException("Список вопросов пуст");
+        }
+        int item = new Random().nextInt(questions.size());
         int i = 0;
-        Question randomQuestion = null;
         for (Question obj : questions) {
             if (i == item) {
-                randomQuestion = obj;
-                break;
+                return obj;
             }
             i++;
         }
-        return randomQuestion;
+        throw new IllegalStateException("Вопрос не найден.");
     }
 }
 
