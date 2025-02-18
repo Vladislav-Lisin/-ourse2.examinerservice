@@ -2,7 +2,7 @@ package pro.skyjava.course2.examinerservice.service;
 
 
 import org.springframework.stereotype.Service;
-import pro.skyjava.course2.examinerservice.Exception.QuestionAmountException;
+import pro.skyjava.course2.examinerservice.exception.QuestionAmountException;
 import pro.skyjava.course2.examinerservice.domain.Question;
 
 import java.util.Collection;

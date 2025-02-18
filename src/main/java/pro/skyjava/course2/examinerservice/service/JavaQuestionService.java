@@ -34,19 +34,18 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
-        if (questions.isEmpty()) {
-            return null;
-        }
         int size = questions.size();
         int item = new Random().nextInt(size);
         int i = 0;
+        Question randomQuestion = null;
         for (Question obj : questions) {
             if (i == item) {
-                return obj;
+                randomQuestion = obj;
+                break;
             }
             i++;
         }
-        return null;
+        return randomQuestion;
     }
 }
 
